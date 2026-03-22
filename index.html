@@ -370,7 +370,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:1.8rem 3rem;di
         <div class="ptitle"><svg width="8" height="8"><circle cx="4" cy="4" r="4" fill="#16a34a"/></svg> system.profile</div>
         <div class="mr"><span class="mk">location</span><span class="mv">Noida, India 🇮🇳</span></div>
         <div class="mr"><span class="mk">role</span><span class="mv">Technical Lead @ Paytm</span></div>
-        <div class="mr"><span class="mk">email</span><span class="mv"><a href="mailto:arpitsingh134@gmail.com">arpitsingh134@gmail.com</a></span></div>
+        <div class="mr"><span class="mk">email</span><span class="mv"><a href="/cdn-cgi/l/email-protection#741506041d00071d1a131c454740341319151d185a171b19"><span class="__cf_email__" data-cfemail="640516140d10170d0a030c555750240309050d084a070b09">[email&#160;protected]</span></a></span></div>
         <div class="mr"><span class="mk">phone</span><span class="mv">+91-8858494096</span></div>
         <div class="mr"><span class="mk">github</span><span class="mv"><a href="https://github.com/arpitsingh134" target="_blank">arpitsingh134</a></span></div>
         <div class="mr"><span class="mk">linkedin</span><span class="mv"><a href="https://linkedin.com/in/arpitsingh134" target="_blank">arpitsingh134</a></span></div>
@@ -708,9 +708,9 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:1.8rem 3rem;di
       <div class="revl">
         <p class="cintro">Open to <strong>Senior Backend Engineer</strong> and <strong>Technical Lead</strong> roles. Drop a message and I'll get back within 24 hours.</p>
         <div class="clinks">
-          <a href="mailto:arpitsingh134@gmail.com" class="ccard">
+          <a href="/cdn-cgi/l/email-protection#8cedfefce5f8ffe5e2ebe4bdbfb8ccebe1ede5e0a2efe3e1" class="ccard">
             <div class="cci">✉️</div>
-            <div><div class="ccl">Email</div><div class="ccv">arpitsingh134@gmail.com</div></div>
+            <div><div class="ccl">Email</div><div class="ccv"><span class="__cf_email__" data-cfemail="cdacbfbda4b9bea4a3aaa5fcfef98daaa0aca4a1e3aea2a0">[email&#160;protected]</span></div></div>
           </a>
           <a href="tel:+918858494096" class="ccard">
             <div class="cci">📱</div>
@@ -728,7 +728,6 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:1.8rem 3rem;di
       </div>
       <div class="cform-wrap revr">
         <div class="cform-title">Send a Message</div>
-        <div class="cform-sub">Messages go straight to Gmail via FormSubmit — free &amp; instant</div>
         <form class="cform" action="https://formsubmit.co/arpitsingh134@gmail.com" method="POST">
           <input type="hidden" name="_subject" value="New message from your portfolio!">
           <input type="hidden" name="_captcha" value="false">
@@ -737,20 +736,20 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:1.8rem 3rem;di
           <div class="frow">
             <div class="fgrp">
               <label for="fname">Your Name</label>
-              <input id="fname" type="text" name="name" placeholder="John Doe" required>
+              <input id="fname" type="text" name="name" required>
             </div>
             <div class="fgrp">
               <label for="femail">Email Address</label>
-              <input id="femail" type="email" name="email" placeholder="john@company.com" required>
+              <input id="femail" type="email" name="email" required>
             </div>
           </div>
           <div class="fgrp">
             <label for="fsubj">Subject</label>
-            <input id="fsubj" type="text" name="subject" placeholder="Senior Backend Role / Collaboration / ...">
+            <input id="fsubj" type="text" name="subject">
           </div>
           <div class="fgrp">
             <label for="fmsg">Message</label>
-            <textarea id="fmsg" name="message" placeholder="Hi Arpit, I'd love to discuss..." required></textarea>
+            <textarea id="fmsg" name="message" required></textarea>
           </div>
           <button type="submit" class="fsub">Send Message →</button>
           <div class="form-note">Powered by <a href="https://formsubmit.co" target="_blank">FormSubmit</a> — no spam, no fees.</div>
@@ -765,7 +764,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:1.8rem 3rem;di
   <span class="ft">Deployed on GitHub Pages · <span class="fc">index.html</span></span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* CIRCUIT CANVAS */
 (function(){
   const c=document.getElementById('cc'),x=c.getContext('2d');
@@ -818,40 +817,88 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:1.8rem 3rem;di
 
 /* COUNTERS */
 (function(){
-  [{id:'c1',end:7,d:1400},{id:'c2',end:100,d:2000},{id:'c3',end:83,d:1700},{id:'c4',end:50,d:1500}].forEach(t=>{
-    const el=document.getElementById(t.id);let st=null,done=false;
-    new IntersectionObserver(e=>{
-      if(e[0].isIntersecting&&!done){done=true;
-        function f(ts){if(!st)st=ts;const p=Math.min((ts-st)/t.d,1);el.textContent=Math.round(p*t.end);if(p<1)requestAnimationFrame(f)}
-        requestAnimationFrame(f);
-      }
-    }).observe(el);
+  const targets = [{id:'c1',end:7,d:1400},{id:'c2',end:100,d:2000},{id:'c3',end:83,d:1700},{id:'c4',end:50,d:1500}];
+  function runCounter(el, end, duration) {
+    let startTs = null;
+    function step(ts) {
+      if(!startTs) startTs = ts;
+      const progress = Math.min((ts - startTs) / duration, 1);
+      // ease out
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * end);
+      if(progress < 1) requestAnimationFrame(step);
+      else el.textContent = end;
+    }
+    requestAnimationFrame(step);
+  }
+  // Delay slightly so fonts/layout are ready, then run all counters
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      targets.forEach(t => {
+        const el = document.getElementById(t.id);
+        if(el) runCounter(el, t.end, t.d);
+      });
+    }, 600);
   });
 })();
 
 /* REVEAL */
 (function(){
-  const ob=new IntersectionObserver(entries=>{
-    entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('v'),i*65);ob.unobserve(e.target)}});
-  },{threshold:.08});
-  document.querySelectorAll('.rev,.revl,.revr').forEach(el=>ob.observe(el));
+  const items = Array.from(document.querySelectorAll('.rev,.revl,.revr'));
+  const ob = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if(e.isIntersecting){
+        setTimeout(() => e.target.classList.add('v'), i * 65);
+        ob.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.06, rootMargin: '0px 0px -20px 0px'});
+  window.addEventListener('load', () => {
+    items.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if(rect.top < window.innerHeight) {
+        setTimeout(() => el.classList.add('v'), 200);
+      } else {
+        ob.observe(el);
+      }
+    });
+  });
 })();
 
 /* SKILL BARS */
 (function(){
-  const ob=new IntersectionObserver(e=>{
-    e.forEach(en=>{if(en.isIntersecting){en.target.style.width=en.target.dataset.w+'%';ob.unobserve(en.target)}});
-  },{threshold:.3});
-  document.querySelectorAll('.sbf').forEach(f=>ob.observe(f));
+  function animateBars(bars){
+    bars.forEach(f => { f.style.width = f.dataset.w + '%'; });
+  }
+  const bars = Array.from(document.querySelectorAll('.sbf'));
+  if(!bars.length) return;
+  const ob = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if(en.isIntersecting){
+        en.target.style.width = en.target.dataset.w + '%';
+        ob.unobserve(en.target);
+      }
+    });
+  }, {threshold: 0.1, rootMargin: '0px 0px -30px 0px'});
+  bars.forEach(f => {
+    // If already visible on load, animate immediately
+    const rect = f.getBoundingClientRect();
+    if(rect.top < window.innerHeight) {
+      setTimeout(() => { f.style.width = f.dataset.w + '%'; }, 400);
+    } else {
+      ob.observe(f);
+    }
+  });
 })();
 
 /* NAV HIGHLIGHT */
 (function(){
-  const ss=document.querySelectorAll('section[id]'),ls=document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll',()=>{
-    let cur='';
-    ss.forEach(s=>{if(window.scrollY>=s.offsetTop-130)cur=s.id});
-    ls.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+  const ss = document.querySelectorAll('section[id]');
+  const ls = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    ss.forEach(s => { if(window.scrollY >= s.offsetTop - 130) cur = s.id; });
+    ls.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
   });
 })();
 </script>
