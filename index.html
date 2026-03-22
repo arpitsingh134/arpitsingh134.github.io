@@ -67,7 +67,47 @@ nav{
   background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
   background-size:48px 48px;opacity:.45;pointer-events:none;
 }
-.hero-inner{max-width:940px;position:relative}
+.hero-inner{
+  width:100%;max-width:1320px;margin:0 auto;position:relative;
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
+}
+.hero-left{max-width:580px}
+/* ARCH DIAGRAM */
+.hero-visual{
+  position:relative;display:flex;flex-direction:column;align-items:center;gap:1rem;
+  animation:fUp .8s .5s ease both;
+}
+.arch-canvas-wrap{
+  position:relative;width:100%;
+  background:rgba(255,255,255,0.75);
+  border:1.5px solid var(--border);border-radius:16px;
+  box-shadow:0 8px 40px rgba(26,110,245,0.1),0 2px 12px rgba(15,33,68,0.07);
+  overflow:hidden;backdrop-filter:blur(8px);
+}
+.arch-canvas-wrap::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(26,110,245,0.03),rgba(14,165,233,0.03));
+  pointer-events:none;z-index:0;
+}
+#archCanvas{display:block;width:100%;position:relative;z-index:1}
+.arch-header{
+  position:absolute;top:0;left:0;right:0;padding:.55rem 1rem;
+  background:rgba(244,247,251,0.95);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:.65rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;z-index:2;
+}
+.arch-header-left{display:flex;align-items:center;gap:.5rem;color:var(--navy);font-weight:600;font-size:.68rem}
+.arch-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pgn 2s infinite}
+.arch-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;width:100%}
+.metric-pill{
+  background:var(--white);border:1.5px solid var(--border);border-radius:8px;
+  padding:.65rem .8rem;text-align:center;box-shadow:var(--shadow);transition:border-color .3s;
+}
+.metric-pill:hover{border-color:var(--blue)}
+.metric-val{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--blue);line-height:1}
+.metric-lbl{font-size:.6rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-top:.22rem}
+@media(max-width:1100px){.hero-inner{grid-template-columns:1fr}.hero-visual{display:none}}
+@media(max-width:768px){.hero-inner{grid-template-columns:1fr}.hero-visual{display:none}}
 .h-tag{font-size:.8rem;letter-spacing:.16em;color:var(--blue);text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem;animation:fUp .6s .1s ease both}
 .h-tag::before{content:'//';color:var(--muted);font-size:.7rem}
 .h-tag .live{background:var(--green);color:#fff;padding:.12rem .55rem;border-radius:20px;font-size:.65rem;letter-spacing:.1em}
@@ -76,7 +116,7 @@ h1.hname{font-family:'Syne',sans-serif;font-size:clamp(3.2rem,7.5vw,6.2rem);font
 .hrole{font-size:clamp(1.05rem,2.2vw,1.35rem);color:var(--text2);margin-bottom:2rem;animation:fUp .6s .3s ease both;display:flex;align-items:center;gap:.5rem;font-weight:300}
 .ttext{color:var(--blue);font-weight:600;min-width:280px}
 .tcur{display:inline-block;width:2px;height:1.1em;background:var(--blue);margin-left:1px;animation:blink .8s step-end infinite;vertical-align:middle}
-.hsum{max-width:640px;color:var(--text2);font-size:1rem;line-height:2;margin-bottom:2.5rem;font-weight:300;animation:fUp .6s .4s ease both}
+.hsum{color:var(--text2);font-size:1rem;line-height:2;margin-bottom:2.5rem;font-weight:300;animation:fUp .6s .4s ease both}
 .hsum strong{color:var(--navy);font-weight:600}
 .hctas{display:flex;gap:1rem;flex-wrap:wrap;animation:fUp .6s .5s ease both}
 .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.78rem 1.8rem;border-radius:6px;font-size:.85rem;font-family:'JetBrains Mono',monospace;font-weight:600;letter-spacing:.06em;text-decoration:none;border:none;cursor:pointer;transition:all .25s}
@@ -84,10 +124,10 @@ h1.hname{font-family:'Syne',sans-serif;font-size:clamp(3.2rem,7.5vw,6.2rem);font
 .btn-p:hover{background:var(--blue2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,110,245,.35)}
 .btn-g{color:var(--navy);border:1.5px solid var(--border2);background:var(--white)}
 .btn-g:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px);box-shadow:var(--shadow)}
-.hstats{display:flex;gap:3rem;margin-top:3.5rem;padding-top:2rem;border-top:1.5px solid var(--border);flex-wrap:wrap;animation:fUp .6s .6s ease both}
-.sval{font-family:'Syne',sans-serif;font-size:2.3rem;font-weight:800;color:var(--blue);line-height:1}
-.sval sup{font-size:1rem;color:var(--text2)}
-.slbl{font-size:.72rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-top:.3rem}
+.hstats{display:flex;gap:2.5rem;margin-top:3rem;padding-top:2rem;border-top:1.5px solid var(--border);flex-wrap:wrap;animation:fUp .6s .6s ease both}
+.sval{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--blue);line-height:1}
+.sval sup{font-size:.9rem;color:var(--text2)}
+.slbl{font-size:.68rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-top:.3rem}
 
 /* SECTIONS */
 section{position:relative;z-index:1;padding:6rem 3rem}
@@ -328,6 +368,8 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:1.8rem 3rem;di
 <!-- HERO -->
 <section id="hero">
   <div class="hero-inner">
+    <!-- LEFT -->
+    <div class="hero-left">
     <div class="h-tag">Senior Backend Engineer · Technical Lead <span class="live">Available</span></div>
     <h1 class="hname">Arpit<br><span class="acc">Singh</span></h1>
     <div class="hrole">
@@ -350,6 +392,24 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:1.8rem 3rem;di
       <div><div class="sval"><span id="c3">0</span><sup>%</sup></div><div class="slbl">Batch Time Cut</div></div>
       <div><div class="sval">$<span id="c4">0</span><sup>K+/yr</sup></div><div class="slbl">Cost Saved</div></div>
     </div>
+    </div><!-- /hero-left -->
+
+    <!-- RIGHT: Architecture Diagram -->
+    <div class="hero-visual">
+      <div class="arch-canvas-wrap">
+        <div class="arch-header">
+          <div class="arch-header-left"><div class="arch-dot"></div>system.architecture — live</div>
+          <span>event-driven · microservices</span>
+        </div>
+        <canvas id="archCanvas"></canvas>
+      </div>
+      <div class="arch-metrics">
+        <div class="metric-pill"><div class="metric-val" id="m1">0</div><div class="metric-lbl">msgs / sec</div></div>
+        <div class="metric-pill"><div class="metric-val" id="m2">0ms</div><div class="metric-lbl">avg latency</div></div>
+        <div class="metric-pill"><div class="metric-val" id="m3">0%</div><div class="metric-lbl">uptime</div></div>
+      </div>
+    </div><!-- /hero-visual -->
+
   </div>
 </section>
 
@@ -891,7 +951,224 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:1.8rem 3rem;di
   });
 })();
 
-/* NAV HIGHLIGHT */
+/* ARCHITECTURE DIAGRAM */
+(function(){
+  const canvas = document.getElementById('archCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const HEADER_H = 32;
+  let W, H, packets = [], frame = 0;
+
+  // Node definitions (as fractions of canvas size, set after resize)
+  const nodeDefs = [
+    { id:'kafka',  label:'Kafka Bus',       icon:'⚡', color:'#1a6ef5', x:.5,  y:.42, r:30, ring:true },
+    { id:'api',    label:'API Gateway',     icon:'🌐', color:'#0ea5e9', x:.5,  y:.12, r:22 },
+    { id:'kyc',    label:'KYC Service',     icon:'🏦', color:'#8b5cf6', x:.82, y:.28, r:20 },
+    { id:'inv',    label:'Inventory Svc',   icon:'📦', color:'#f59e0b', x:.82, y:.62, r:20 },
+    { id:'pay',    label:'Payment Svc',     icon:'💳', color:'#10b981', x:.5,  y:.78, r:20 },
+    { id:'auth',   label:'Auth Service',    icon:'🔐', color:'#ef4444', x:.18, y:.62, r:20 },
+    { id:'db',     label:'Cassandra DB',    icon:'🗄️', color:'#6366f1', x:.18, y:.28, r:20 },
+  ];
+
+  // Connections: [from, to, direction]
+  const edges = [
+    ['api','kafka'], ['kafka','kyc'], ['kafka','inv'],
+    ['kafka','pay'], ['kafka','auth'], ['db','kafka'],
+    ['auth','kafka'],
+  ];
+
+  let nodes = [];
+
+  function resize(){
+    const wrap = canvas.parentElement;
+    W = wrap.clientWidth;
+    H = Math.round(W * 0.72);
+    canvas.width  = W;
+    canvas.height = H;
+    // Recompute node positions
+    nodes = nodeDefs.map(n => ({
+      ...n,
+      px: n.x * W,
+      py: n.y * H + HEADER_H,
+    }));
+  }
+
+  function getNode(id){ return nodes.find(n => n.id === id); }
+
+  function spawnPacket(){
+    const edge = edges[Math.floor(Math.random() * edges.length)];
+    const rev  = Math.random() > 0.5;
+    const from = getNode(rev ? edge[1] : edge[0]);
+    const to   = getNode(rev ? edge[0] : edge[1]);
+    if(!from || !to) return;
+    packets.push({
+      x: from.px, y: from.py,
+      tx: to.px,  ty: to.py,
+      t: 0, speed: 0.008 + Math.random() * 0.012,
+      color: from.color,
+      size: 3.5 + Math.random() * 2,
+    });
+  }
+
+  function drawEdge(a, b){
+    const na = getNode(a), nb = getNode(b);
+    if(!na || !nb) return;
+    const grad = ctx.createLinearGradient(na.px, na.py, nb.px, nb.py);
+    grad.addColorStop(0, na.color + '55');
+    grad.addColorStop(1, nb.color + '55');
+    ctx.beginPath();
+    ctx.moveTo(na.px, na.py);
+    ctx.lineTo(nb.px, nb.py);
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([5, 6]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  function drawNode(n, t){
+    const pulse = Math.sin(t * 0.05 + n.x * 10) * 0.5 + 0.5;
+
+    // Outer ring (for kafka)
+    if(n.ring){
+      ctx.beginPath();
+      ctx.arc(n.px, n.py, n.r + 10 + pulse * 6, 0, Math.PI * 2);
+      ctx.strokeStyle = n.color + '25';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(n.px, n.py, n.r + 4 + pulse * 3, 0, Math.PI * 2);
+      ctx.strokeStyle = n.color + '40';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    // Glow
+    const grd = ctx.createRadialGradient(n.px, n.py, 0, n.px, n.py, n.r + 8);
+    grd.addColorStop(0, n.color + '30');
+    grd.addColorStop(1, 'transparent');
+    ctx.beginPath();
+    ctx.arc(n.px, n.py, n.r + 8, 0, Math.PI * 2);
+    ctx.fillStyle = grd;
+    ctx.fill();
+
+    // Circle
+    ctx.beginPath();
+    ctx.arc(n.px, n.py, n.r, 0, Math.PI * 2);
+    ctx.fillStyle = '#fff';
+    ctx.shadowColor = n.color;
+    ctx.shadowBlur = 10 + pulse * 8;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+    ctx.strokeStyle = n.color;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Icon
+    ctx.font = `${n.r * 0.82}px serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(n.icon, n.px, n.py);
+
+    // Label
+    ctx.font = `600 10px 'JetBrains Mono', monospace`;
+    ctx.fillStyle = '#1e293b';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+
+    // Label above or below based on position
+    const labelY = n.py + n.r + 5;
+    // Background pill for label
+    const lw = ctx.measureText(n.label).width + 10;
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.beginPath();
+    ctx.roundRect(n.px - lw/2, labelY, lw, 14, 3);
+    ctx.fill();
+    ctx.fillStyle = '#475569';
+    ctx.fillText(n.label, n.px, labelY + 2);
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+
+    // Soft background
+    ctx.fillStyle = 'rgba(244,247,251,0.0)';
+    ctx.fillRect(0, 0, W, H);
+
+    // Edges
+    edges.forEach(([a,b]) => drawEdge(a, b));
+
+    // Packets
+    packets = packets.filter(p => p.t <= 1);
+    packets.forEach(p => {
+      p.t += p.speed;
+      const et = p.t < 1 ? p.t : 1;
+      // ease in-out
+      const ease = et < .5 ? 2*et*et : -1+(4-2*et)*et;
+      const px = p.x + (p.tx - p.x) * ease;
+      const py = p.y + (p.ty - p.y) * ease;
+
+      // Trail
+      ctx.beginPath();
+      ctx.arc(px, py, p.size * 1.8, 0, Math.PI * 2);
+      ctx.fillStyle = p.color + '20';
+      ctx.fill();
+
+      // Dot
+      ctx.beginPath();
+      ctx.arc(px, py, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur = 8;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Nodes
+    nodes.forEach(n => drawNode(n, frame));
+
+    // Spawn packets
+    if(frame % 18 === 0) spawnPacket();
+    if(frame % 28 === 0) spawnPacket();
+
+    frame++;
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); });
+  resize();
+  requestAnimationFrame(draw);
+})();
+
+/* LIVE METRICS TICKERS */
+(function(){
+  const m1 = document.getElementById('m1');
+  const m2 = document.getElementById('m2');
+  const m3 = document.getElementById('m3');
+  if(!m1) return;
+
+  let msgs = 1240, lat = 12;
+  m3.textContent = '99.9%';
+
+  setInterval(() => {
+    msgs += Math.floor((Math.random() - 0.45) * 80);
+    if(msgs < 800) msgs = 800;
+    if(msgs > 2400) msgs = 2400;
+    m1.textContent = msgs.toLocaleString();
+  }, 900);
+
+  setInterval(() => {
+    lat += Math.round((Math.random() - 0.5) * 4);
+    if(lat < 6) lat = 6;
+    if(lat > 28) lat = 28;
+    m2.textContent = lat + 'ms';
+  }, 1200);
+
+  // Initialise
+  m1.textContent = '1,240';
+  m2.textContent = '12ms';
+})();
 (function(){
   const ss = document.querySelectorAll('section[id]');
   const ls = document.querySelectorAll('.nav-links a');
