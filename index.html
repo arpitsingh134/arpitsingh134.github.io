@@ -85,7 +85,6 @@ body.dark .fgrp label{color:var(--text2)}
 body.dark .cform-wrap{background:var(--card)}
 body.dark .educard{background:var(--card)}
 body.dark .ediw{background:rgba(26,110,245,0.12)}
-body.dark .ib-desc{color:rgba(180,200,230,0.5)}
 body.dark .arch-canvas-wrap{background:rgba(13,17,23,0.85)}
 body.dark .arch-header{background:rgba(13,17,23,0.95)}
 body.dark #company-strip{background:var(--white);border-color:var(--border)}
@@ -277,7 +276,7 @@ h2.st{font-family:'Syne',sans-serif;font-size:clamp(2rem,3.2vw,2.7rem);font-weig
 }
 /* MARQUEE */
 #marquee{
-  background:var(--navy);
+  background:#0f2144;
   padding:.9rem 0;
   overflow:hidden;
   position:relative;
@@ -288,8 +287,14 @@ h2.st{font-family:'Syne',sans-serif;font-size:clamp(2rem,3.2vw,2.7rem);font-weig
 #marquee::before,#marquee::after{
   content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;
 }
-#marquee::before{left:0;background:linear-gradient(to right,var(--navy),transparent)}
-#marquee::after{right:0;background:linear-gradient(to left,var(--navy),transparent)}
+#marquee::before{left:0;background:linear-gradient(to right,#0f2144,transparent)}
+#marquee::after{right:0;background:linear-gradient(to left,#0f2144,transparent)}
+body.dark #marquee{background:#060d1a;border-color:rgba(26,110,245,0.12)}
+body.dark #marquee::before{background:linear-gradient(to right,#060d1a,transparent)}
+body.dark #marquee::after{background:linear-gradient(to left,#060d1a,transparent)}
+body.dark .mq-item{color:rgba(147,197,253,0.8)}
+body.dark .mq-item:hover{color:#fff}
+body.dark .mq-sep{color:rgba(26,110,245,0.3)}
 .mq-track{display:flex;gap:0;width:max-content;animation:mq-scroll 35s linear infinite}
 .mq-track:hover{animation-play-state:paused}
 @keyframes mq-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
@@ -393,22 +398,48 @@ h2.st{font-family:'Syne',sans-serif;font-size:clamp(2rem,3.2vw,2.7rem);font-weig
 
 /* IMPACT BANNER */
 #impact-banner{
-  background:var(--navy);
+  background:#0b1829;
   padding:4rem 3rem;
   position:relative;z-index:1;overflow:hidden;
 }
 #impact-banner::before{
   content:'';position:absolute;inset:0;
-  background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+  background-image:linear-gradient(rgba(26,110,245,0.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(26,110,245,0.06) 1px,transparent 1px);
   background-size:48px 48px;pointer-events:none;
 }
 #impact-banner::after{
   content:'';position:absolute;
   width:600px;height:600px;border-radius:50%;
-  background:radial-gradient(circle,rgba(26,110,245,0.12) 0%,transparent 70%);
+  background:radial-gradient(circle,rgba(26,110,245,0.18) 0%,transparent 70%);
   top:-200px;right:-100px;pointer-events:none;
 }
+body.dark #impact-banner{
+  background:#050c18;
+  border-top:1px solid rgba(26,110,245,0.15);
+  border-bottom:1px solid rgba(26,110,245,0.15);
+}
+body.dark #impact-banner::before{
+  background-image:linear-gradient(rgba(26,110,245,0.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(26,110,245,0.08) 1px,transparent 1px);
+}
+body.dark #impact-banner::after{
+  background:radial-gradient(circle,rgba(26,110,245,0.25) 0%,transparent 70%);
+}
+body.dark .ib-stats{
+  background:rgba(26,110,245,0.08);
+  border-color:rgba(26,110,245,0.2);
+}
+body.dark .ib-stat{background:rgba(26,110,245,0.04)}
+body.dark .ib-stat:hover{background:rgba(26,110,245,0.15)}
+body.dark .ib-num{
+  background:linear-gradient(135deg,#93c5fd,#67e8f9);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+body.dark .ib-unit{color:rgba(147,197,253,0.75)}
+body.dark .ib-desc{color:rgba(147,197,253,0.55)}
+body.dark .ib-title{color:#f0f6ff}
+body.dark .ib-title span{color:#93c5fd}
 .ib-inner{
   max-width:1100px;margin:0 auto;
   display:flex;flex-direction:column;align-items:center;gap:2.8rem;
@@ -1420,7 +1451,8 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:1.8rem 3rem;di
   const canvas = document.getElementById('radarCanvas');
   if(!canvas) return;
   const ctx = canvas.getContext('2d');
-  const SIZE = 320, CX = 160, CY = 160, R = 118;
+  const SIZE = 340, CX = 170, CY = 170, R = 108;
+  canvas.width = SIZE; canvas.height = SIZE;
   const skills = [
     { label:'Java & Backend',       score:.95 },
     { label:'Distributed Systems',  score:.90 },
@@ -1431,7 +1463,12 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:1.8rem 3rem;di
   ];
   const N = skills.length;
   const blue = '#1a6ef5', cyan = '#0ea5e9';
-  const gridColor = '#dde4ef', labelColor = '#475569';
+
+  function isDark(){ return document.body.classList.contains('dark'); }
+  function gridColor(){ return isDark() ? 'rgba(26,110,245,0.25)' : '#dde4ef'; }
+  function gridEdge(){  return isDark() ? 'rgba(26,110,245,0.45)' : '#b6c4dd'; }
+  function labelCol(){  return isDark() ? '#93c5fd' : '#1e293b'; }
+
   let animProgress = 0, animating = false, done = false;
 
   function pt(i, r){ // point on axis i at radius r
@@ -1448,8 +1485,8 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:1.8rem 3rem;di
         i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
       }
       ctx.closePath();
-      ctx.strokeStyle = frac === 1 ? '#b6c4dd' : gridColor;
-      ctx.lineWidth = frac === 1 ? 1 : .8;
+      ctx.strokeStyle = frac === 1 ? gridEdge() : gridColor();
+      ctx.lineWidth = frac === 1 ? 1 : .7;
       ctx.stroke();
     });
     // Axes
@@ -1458,20 +1495,26 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:1.8rem 3rem;di
       ctx.beginPath();
       ctx.moveTo(CX, CY);
       ctx.lineTo(p.x, p.y);
-      ctx.strokeStyle = gridColor;
-      ctx.lineWidth = .8;
+      ctx.strokeStyle = gridColor();
+      ctx.lineWidth = .7;
       ctx.stroke();
     }
   }
 
   function drawLabels(){
-    ctx.font = '600 11px JetBrains Mono, monospace';
+    ctx.font = '600 11.5px JetBrains Mono, monospace';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     for(let i=0;i<N;i++){
-      const p = pt(i, R + 22);
-      ctx.fillStyle = labelColor;
-      ctx.fillText(skills[i].label, p.x, p.y);
+      const p = pt(i, R + 28);
+      // Nudge horizontal labels slightly inward to prevent side-clipping
+      let x = p.x, y = p.y;
+      if(x < 30)  x = 30;
+      if(x > SIZE - 30) x = SIZE - 30;
+      if(y < 12)  y = 12;
+      if(y > SIZE - 12) y = SIZE - 12;
+      ctx.fillStyle = labelCol();
+      ctx.fillText(skills[i].label, x, y);
     }
   }
 
@@ -1484,8 +1527,13 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:1.8rem 3rem;di
     }
     ctx.closePath();
     const grad = ctx.createRadialGradient(CX, CY, 0, CX, CY, R);
-    grad.addColorStop(0, 'rgba(26,110,245,0.28)');
-    grad.addColorStop(1, 'rgba(14,165,233,0.10)');
+    if(isDark()){
+      grad.addColorStop(0, 'rgba(26,110,245,0.40)');
+      grad.addColorStop(1, 'rgba(14,165,233,0.18)');
+    } else {
+      grad.addColorStop(0, 'rgba(26,110,245,0.28)');
+      grad.addColorStop(1, 'rgba(14,165,233,0.10)');
+    }
     ctx.fillStyle = grad;
     ctx.fill();
 
@@ -1543,6 +1591,10 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:1.8rem 3rem;di
 
   // Draw static at 0 immediately so canvas isn't blank
   render(0);
+
+  // Re-render whenever dark mode is toggled
+  const mo = new MutationObserver(() => render(animProgress >= 1 ? 1 : animProgress));
+  mo.observe(document.body, {attributes:true, attributeFilter:['class']});
 
   // Trigger on scroll into view
   const ob = new IntersectionObserver(entries => {
